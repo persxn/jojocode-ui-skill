@@ -1,5 +1,5 @@
 node_modules/
-shots/
+/shots/
 *-workspace/
 evals/results/
 .DS_Store
