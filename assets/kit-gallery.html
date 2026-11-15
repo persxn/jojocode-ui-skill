@@ -1,0 +1,106 @@
+<!doctype html>
+<!-- Every jojo-kit.css recipe on one page, in one mode and accent per load:
+     kit-gallery.html?mode=dark&accent=jade  (or set data-mode / data-accent on <html>). -->
+<html lang="en" data-mode="light" data-accent="amethyst">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JojoCode kit gallery</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Unbounded:wght@600&display=swap">
+<link rel="stylesheet" href="jojo-kit.css">
+<script>
+  const q = new URLSearchParams(location.search);
+  if (q.get('mode')) document.documentElement.dataset.mode = q.get('mode');
+  if (q.get('accent')) document.documentElement.dataset.accent = q.get('accent');
+</script>
+<style>
+  body { position: relative; } .jk-aurora { position: absolute; min-height: 100%; }
+  main { max-width: 68rem; margin: 0 auto; padding: var(--space-8) var(--gutter); display: grid; gap: var(--space-5); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: var(--space-4); }
+  .card { padding: var(--space-6); display: grid; gap: var(--space-4); align-content: start; }
+  .label { color: var(--text-muted); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+  .row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+  .input { min-height: 2.75rem; padding: 0 var(--space-4); border: 0; border-radius: var(--radius-m); background: var(--recess-bg); box-shadow: var(--recess-shadow); color: var(--text-strong); font: inherit; width: 100%; }
+  .track { height: 10px; border-radius: 999px; background: var(--recess-bg); box-shadow: var(--recess-shadow); overflow: hidden; }
+  .fill { height: 100%; width: 68%; border-radius: inherit; background: var(--clay-bg); box-shadow: var(--clay-shadow); }
+  .big { color: var(--text-strong); font-size: var(--fs-stat); font-weight: 600; letter-spacing: -0.03em; }
+  .delta { color: var(--success-ink); font-size: var(--fs-small); font-weight: 600; }
+  [data-mode='dark'] .delta, [data-mode='gamer'] .delta { color: #34d399; }
+  .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-2); }
+  .swatches span { aspect-ratio: 1; border-radius: var(--radius-m); box-shadow: inset 0 0 0 1px var(--line); }
+  .type h1 { font-size: var(--fs-hero); letter-spacing: -0.035em; line-height: 1.02; }
+</style>
+</head>
+<body>
+<div class="jk-aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<main>
+  <div class="type jk-glass card">
+    <span class="jk-eyebrow">The JojoCode kit</span>
+    <h1 class="jk-hero">One hue,<br><em>every surface.</em></h1>
+    <p class="jk-lede">Glass for surfaces, recess for things you put something into, clay for the one primary action. The palette, shadows and aurora all follow <code>--ac-hue</code>.</p>
+  </div>
+
+  <div class="grid">
+    <div class="jk-glass card">
+      <span class="label">Buttons</span>
+      <div class="row"><button class="jk-btn is-primary">Start the demo</button><button class="jk-btn">Secondary</button><button class="jk-btn is-ghost">Ghost</button></div>
+      <div class="row"><button class="jk-btn is-primary is-sm">Run</button><button class="jk-btn is-sm">Save</button></div>
+    </div>
+
+    <div class="jk-glass card">
+      <span class="label">Status chips (recess, never clay)</span>
+      <div class="row">
+        <span class="jk-chip"><span class="jk-dot" style="--tone:var(--success)"></span>Accepted</span>
+        <span class="jk-chip"><span class="jk-dot" style="--tone:var(--danger)"></span>Wrong answer</span>
+        <span class="jk-chip"><span class="jk-dot" style="--tone:var(--caution)"></span>Time limit</span>
+        <span class="jk-chip"><span class="num">38</span>&nbsp;of 40 runs</span>
+      </div>
+    </div>
+
+    <div class="jk-glass card">
+      <span class="label">Segmented and input</span>
+      <div class="jk-seg" role="group" aria-label="Seat"><button aria-pressed="true">As a student</button><button aria-pressed="false">As the teacher</button></div>
+      <input class="input" placeholder="Search problems, people, sets">
+    </div>
+
+    <div class="jk-glass card">
+      <span class="label">A figure that matters</span>
+      <div class="row" style="justify-content:space-between">
+        <span class="big num">1,482</span><span class="delta">▲ 36 this week</span>
+      </div>
+      <div class="track"><div class="fill"></div></div>
+    </div>
+
+    <div class="jk-glass card">
+      <span class="label">Countdown ring</span>
+      <div class="row">
+        <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><circle class="jk-ring-track" cx="28" cy="28" r="24" stroke-width="6"/><circle class="jk-ring-arc" cx="28" cy="28" r="24" stroke-width="6" stroke-dasharray="150.8" stroke-dashoffset="40" transform="rotate(-90 28 28)"/></svg>
+        <span class="jk-chip"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle class="jk-ring-track" cx="10" cy="10" r="8" stroke-width="3"/><circle class="jk-ring-arc" cx="10" cy="10" r="8" stroke-width="3" stroke-dasharray="50.3" stroke-dashoffset="12" transform="rotate(-90 10 10)"/></svg><span class="num">44:12</span></span>
+      </div>
+    </div>
+
+    <div class="jk-glass card jk-bloom">
+      <span class="label">Clay tiles and bloom</span>
+      <div class="row">
+        <span class="jk-tile"><svg width="22" height="22" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"><path d="M128 32v192M32 128h192"/></svg></span>
+        <span class="jk-tile"><svg width="22" height="22" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"><circle cx="112" cy="112" r="72"/><path d="M164 164l52 52"/></svg></span>
+        <span class="jk-tile"><svg width="22" height="22" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M40 136l56 56L216 72"/></svg></span>
+      </div>
+    </div>
+
+    <div class="jk-glass card">
+      <span class="label">The palette from one hue</span>
+      <div class="swatches">
+        <span style="background:var(--clay-a)"></span><span style="background:var(--clay-b)"></span><span style="background:var(--clay-c)"></span>
+        <span style="background:var(--recess-bg)"></span><span style="background:var(--surface-base)"></span><span style="background:var(--text-strong)"></span>
+      </div>
+    </div>
+
+    <div class="jk-glass card">
+      <span class="label">FAQ expand</span>
+      <details class="jk-expand" open><summary>Do I need to sign up?</summary><p>No. One button, a sealed copy, no email.</p></details>
+    </div>
+  </div>
+</main>
+</body>
+</html>

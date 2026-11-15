@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: landing-page-for-new-product
+expected_outcome: |
+  A single index.html product page on the JojoCode kit tinted to a chosen accent hue, with the product-page structure, one primary action, placeholders instead of invented numbers or testimonials, and a short note of the hue, assumptions and scorecard.

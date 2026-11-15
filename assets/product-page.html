@@ -1,0 +1,253 @@
+<!doctype html>
+<!--
+  JojoCode product-page template (the /product structure, UI-13), on jojo-kit.css.
+  SAMPLE CONTENT: "Fieldbook" is a fictional product. Replace every word, number and name; a number
+  the owner has not given you becomes {{placeholder}}. Keep the structure and the reasons:
+  bar → hero (one clay CTA, the real product as the visual) → counted proof → three steps →
+  tagline reveal → argument → FAQ → the same CTA again.
+-->
+<html lang="en" data-mode="light" data-accent="amethyst">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fieldbook — lab notes your whole team can trust</title>
+<meta name="description" content="Fieldbook keeps every experiment, sample and result in one searchable notebook, so a lab of twelve stops losing a week a month to missing notes.">
+<meta property="og:title" content="Fieldbook — lab notes your whole team can trust">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Unbounded:wght@600&display=swap">
+<link rel="stylesheet" href="jojo-kit.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+  section { padding-block: var(--space-8); scroll-margin-top: var(--space-8); }
+  @media (min-width: 1024px) { section { padding-block: var(--space-9); } }
+  .head { display: grid; gap: var(--space-4); max-width: 48rem; margin-bottom: var(--space-7); }
+
+  /* hero: copy centred, the product full width below it */
+  .hero { padding-top: calc(3.5rem + var(--space-8) + var(--space-5)); text-align: center; }
+  .hero .copy { display: grid; justify-items: center; gap: var(--space-5); max-width: var(--measure); margin-inline: auto; }
+  .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
+  .note { color: var(--text-muted); font-size: var(--fs-meta); }
+  .proof { display: inline-flex; gap: var(--space-2); align-items: center; color: var(--text-muted); font-size: var(--fs-small); }
+  .proof b { color: var(--text-strong); }
+  .device { margin: var(--space-8) auto 0; max-width: 64rem; overflow: hidden; text-align: left; }
+  .device-bar { display: flex; align-items: center; gap: var(--space-3); min-height: 2.5rem; padding: 0 var(--space-4); border-bottom: 1px solid var(--line); color: var(--text-muted); font-size: var(--fs-meta); }
+  .dots { display: inline-flex; gap: 6px; } .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--recess-bg); box-shadow: var(--recess-shadow); }
+  .app { display: grid; grid-template-columns: 13rem 1fr; min-height: 22rem; }
+  .app aside { padding: var(--space-4); border-right: 1px solid var(--line); display: grid; align-content: start; gap: var(--space-1); }
+  .app aside a { padding: var(--space-2) var(--space-3); border-radius: var(--radius-m); color: var(--text-muted); text-decoration: none; font-size: var(--fs-small); font-weight: 500; }
+  .app aside a.on { background: var(--clay-bg); color: var(--clay-text); box-shadow: var(--clay-shadow); }
+  .app main { padding: var(--space-5); display: grid; gap: var(--space-4); align-content: start; }
+  .rows { display: grid; gap: var(--space-2); }
+  .row { display: grid; grid-template-columns: 1fr auto auto; gap: var(--space-3); align-items: center; padding: var(--space-3) var(--space-4); border-radius: var(--radius-m); background: var(--glass-bg); border: 1px solid var(--glass-border); }
+  .row b { color: var(--text-strong); font-weight: 600; } .row span { color: var(--text-muted); font-size: var(--fs-small); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+  .stat { padding: var(--space-5); display: grid; gap: 2px; } .stat + .stat { box-shadow: -1px 0 0 var(--line); }
+  .stat-n { color: var(--text-strong); font-size: var(--fs-stat); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
+  .stat-l { font-size: var(--fs-small); font-weight: 500; } .stat-note { color: var(--text-muted); font-size: var(--fs-meta); }
+  @media (max-width: 767.98px) { .app { grid-template-columns: 1fr; } .app aside { display: none; } .stats { grid-template-columns: 1fr 1fr; } .stat:nth-child(3) { box-shadow: none; } }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); padding: 0; margin: 0; list-style: none; }
+  .step { padding: var(--space-6); display: grid; gap: var(--space-3); align-content: start; }
+  .step h3 { font-size: var(--fs-title-l); letter-spacing: -0.015em; } .step p { color: var(--text-muted); }
+  @media (max-width: 1023.98px) { .steps { grid-template-columns: 1fr; } }
+
+  .ledger { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); align-items: start; }
+  .ledger ol { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); }
+  .ledger button { width: 100%; text-align: left; display: grid; gap: 2px; min-height: 3rem; padding: var(--space-3) var(--space-4); border: 1px solid transparent; border-radius: var(--radius-l); background: none; color: inherit; font: inherit; cursor: pointer; transition: background-color var(--dur-small) var(--ease-out); }
+  .ledger button b { color: var(--text-strong); font-weight: 500; } .ledger button span { color: var(--text-muted); font-size: var(--fs-small); }
+  .ledger button[aria-expanded='true'] { background: var(--glass-bg); border-color: var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-highlight), var(--glass-shadow); }
+  .panel { position: sticky; top: 6rem; padding: var(--space-6); display: grid; gap: var(--space-4); animation: swap 400ms var(--ease-out); }
+  @keyframes swap { from { opacity: 0; transform: translateY(8px); filter: blur(2px); } }
+  @media (max-width: 767.98px) { .ledger { grid-template-columns: 1fr; } .panel { position: static; } }
+
+  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  .rules div { border-top: 1px solid var(--line); padding-top: var(--space-5); display: grid; gap: var(--space-3); }
+  .rules small { color: var(--text-accent); font-family: var(--font-mono); font-weight: 600; } .rules p { color: var(--text-muted); }
+  @media (max-width: 1023.98px) { .rules { grid-template-columns: 1fr; } }
+
+  .faq { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-8); align-items: start; }
+  .faq .head { position: sticky; top: 6rem; margin: 0; } .faq-list { display: grid; gap: var(--space-3); }
+  @media (max-width: 1023.98px) { .faq { grid-template-columns: 1fr; gap: 0; } .faq .head { position: static; margin-bottom: var(--space-6); } }
+
+  .final { padding: var(--space-8) var(--space-6); display: grid; justify-items: center; gap: var(--space-5); text-align: center; }
+  footer { padding: var(--space-6) var(--gutter); border-top: 1px solid var(--line); color: var(--text-muted); font-size: var(--fs-meta); display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: space-between; }
+  footer a { color: inherit; }
+
+  /* the demo switcher: pick a mode and an accent to see the system re-tint */
+  .switcher { position: fixed; z-index: var(--z-dropdown); left: 50%; bottom: var(--space-4); translate: -50% 0; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); padding: var(--space-2); }
+  .burger { display: none; } @media (max-width: 1023.98px) { .burger { display: inline-flex; } .bar-signin { display: none; } }
+</style>
+</head>
+<body>
+<div class="jk-aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<a class="sr-only" href="#main">Skip to content</a>
+
+<header class="jk-bar" id="bar">
+  <a class="jk-wordmark" href="#top" aria-label="Fieldbook, top of the page">field<b>book</b></a>
+  <nav class="jk-nav" aria-label="Sections">
+    <a href="#how">How it works</a><a href="#why">Why</a><a href="#rules">Principles</a><a href="#faq">Questions</a>
+  </nav>
+  <a class="jk-btn is-ghost is-sm bar-signin" href="#">Sign in</a>
+  <a class="jk-btn is-primary is-sm" href="#start">Start free</a>
+</header>
+
+<main id="main">
+  <!-- Hero: one offer, one primary action, the real product as the visual -->
+  <section class="hero wrap" id="top">
+    <div class="copy">
+      <p class="jk-eyebrow">Lab notebook for research teams</p>
+      <h1 class="jk-hero">Every experiment,<br><em>findable in a second.</em></h1>
+      <p class="jk-lede">Fieldbook keeps protocols, samples and results in one searchable notebook, so a lab of twelve stops losing a week a month to notes nobody can find.</p>
+      <div class="cta">
+        <a class="jk-btn is-primary" href="#start" id="start">Start free for 30 days →</a>
+        <a class="jk-btn is-ghost" href="#how">See how it works</a>
+      </div>
+      <p class="note">No card needed. Your notes export as plain files, always.</p>
+      <p class="proof">✓ <span>Used by <b class="num">{{n}}</b> labs (sample: replace with the real figure)</span></p>
+    </div>
+
+    <div class="device jk-glass jk-bloom jk-reveal">
+      <div class="device-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span>Fieldbook · Protein assays</div>
+      <div class="app">
+        <aside><a class="on" href="#">Experiments</a><a href="#">Samples</a><a href="#">Protocols</a><a href="#">Team</a></aside>
+        <main>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+            <h2 style="font-size:var(--fs-title-xl);letter-spacing:-0.02em">This week</h2>
+            <div class="jk-seg" role="group" aria-label="Filter"><button aria-pressed="true">All</button><button aria-pressed="false">Mine</button><button aria-pressed="false">Flagged</button></div>
+          </div>
+          <div class="rows">
+            <div class="row"><b>Bradford assay, batch 14</b><span class="jk-chip"><span class="jk-dot" style="--tone:var(--success)"></span>Verified</span><span class="num">Tue</span></div>
+            <div class="row"><b>Western blot, sample set C</b><span class="jk-chip"><span class="jk-dot" style="--tone:var(--caution)"></span>Needs review</span><span class="num">Mon</span></div>
+            <div class="row"><b>Buffer prep, pH 7.4</b><span class="jk-chip"><span class="jk-dot"></span>Draft</span><span class="num">Mon</span></div>
+          </div>
+        </main>
+      </div>
+      <ul class="stats" style="list-style:none;margin:0;padding:0" aria-label="At a glance">
+        <li class="stat"><span class="stat-n num" data-count="1284">1,284</span><span class="stat-l">experiments logged</span><span class="stat-note">sample figure</span></li>
+        <li class="stat"><span class="stat-n num" data-count="312">312</span><span class="stat-l">protocols</span><span class="stat-note">versioned</span></li>
+        <li class="stat"><span class="stat-n num" data-count="97">97</span><span class="stat-l">% found by search</span><span class="stat-note">sample figure</span></li>
+        <li class="stat"><span class="stat-n num" data-count="12">12</span><span class="stat-l">people</span><span class="stat-note">one notebook</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- How it works: three steps, each naming what the visitor will meet -->
+  <section class="wrap" id="how">
+    <div class="head jk-reveal"><p class="jk-eyebrow">How it works</p><h2 class="jk-section-title">Three steps, no migration project</h2><p class="jk-lede">Bring your existing notes, invite the team, and search everything from day one.</p></div>
+    <ol class="steps">
+      <li class="step jk-glass jk-reveal"><span class="jk-tile" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 152V40M88 80l40-40 40 40M216 152v56H40v-56"/></svg></span><h3>Import what you have</h3><p>Drop in folders of documents and spreadsheets; Fieldbook files each one under its experiment.</p></li>
+      <li class="step jk-glass jk-reveal"><span class="jk-tile" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><circle cx="108" cy="100" r="44"/><path d="M28 200c18-28 46-44 80-44s62 16 80 44M200 72v48M176 96h48"/></svg></span><h3>Invite the lab</h3><p>Everyone writes in the same notebook, with their name and the time on every change.</p></li>
+      <li class="step jk-glass jk-reveal"><span class="jk-tile" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><circle cx="112" cy="112" r="72"/><path d="M164 164l52 52"/></svg></span><h3>Find anything</h3><p>Search by sample, reagent, person or date, and open the exact page it was written on.</p></li>
+    </ol>
+  </section>
+
+  <!-- The tagline, said once and large -->
+  <section class="wrap" aria-label="In one sentence">
+    <p class="jk-tagline" id="tagline">A week of searching,<br>turned into a second,<br>for everyone in the lab.</p>
+  </section>
+
+  <!-- The argument: problem ledger with a sticky answer panel -->
+  <section class="wrap" id="why">
+    <div class="head jk-reveal"><p class="jk-eyebrow">Why it exists</p><h2 class="jk-section-title">Four things every lab knows too well</h2></div>
+    <div class="ledger jk-reveal">
+      <ol id="ledger"></ol>
+      <div class="panel jk-glass" id="panel" role="region" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="rules">
+    <div class="head jk-reveal"><p class="jk-eyebrow">Principles</p><h2 class="jk-section-title">Built to be trusted with your data</h2></div>
+    <div class="rules">
+      <div class="jk-reveal"><small>01</small><h3>Your notes are files</h3><p>Every page exports as Markdown and CSV. Leaving costs nothing.</p></div>
+      <div class="jk-reveal"><small>02</small><h3>Every change is signed</h3><p>Who wrote what, and when, is kept on every edit, forever.</p></div>
+      <div class="jk-reveal"><small>03</small><h3>Nothing is shared by accident</h3><p>Projects are private until you choose who sees them.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap faq" id="faq">
+    <div class="head"><p class="jk-eyebrow">Questions</p><h2 class="jk-section-title">Before you start</h2><p class="jk-lede">The things labs ask first.</p></div>
+    <div class="faq-list">
+      <details class="jk-expand" open><summary>Do I need a card to try it?</summary><p>No. The trial is 30 days with everything on; you choose a plan only if you stay.</p></details>
+      <details class="jk-expand"><summary>Can we bring our old notes?</summary><p>Yes. Folders of documents and spreadsheets import in one step.</p></details>
+      <details class="jk-expand"><summary>Where is our data stored?</summary><p>{{region and provider: the owner must answer this one}}</p></details>
+      <details class="jk-expand"><summary>What happens if we leave?</summary><p>Export everything as plain files at any time. Nothing is locked in.</p></details>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="final jk-glass jk-bloom jk-reveal">
+      <h2 class="jk-section-title">Your lab's memory,<br>in one place.</h2>
+      <p class="jk-lede">Start with the notes you already have. It takes an afternoon.</p>
+      <a class="jk-btn is-primary" href="#start">Start free for 30 days →</a>
+      <p class="note">No card needed. Your notes export as plain files, always.</p>
+    </div>
+  </section>
+</main>
+
+<footer><span>© Fieldbook (sample product)</span><span><a href="#">Privacy</a> · <a href="#">Terms</a></span></footer>
+
+<div class="switcher jk-glass is-float" aria-label="Preview the system">
+  <div class="jk-seg" role="group" aria-label="Mode" id="modes"><button aria-pressed="true" data-v="light">Light</button><button aria-pressed="false" data-v="dark">Dark</button><button aria-pressed="false" data-v="gamer">Gamer</button></div>
+  <div class="jk-seg" role="group" aria-label="Accent" id="accents"><button aria-pressed="true" data-v="amethyst">Amethyst</button><button aria-pressed="false" data-v="electric">Electric</button><button aria-pressed="false" data-v="jade">Jade</button><button aria-pressed="false" data-v="ember">Ember</button></div>
+</div>
+
+<script>
+const root = document.documentElement;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Mode and accent switcher (sets the attributes jojo-kit.css reads).
+for (const [id, attr] of [['modes', 'data-mode'], ['accents', 'data-accent']]) {
+  const group = document.getElementById(id);
+  const sync = () => group.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === root.getAttribute(attr))));
+  group.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { root.setAttribute(attr, b.dataset.v); sync(); } });
+  sync();
+}
+
+// The bar firms up once the hero is behind it (an observer, not a scroll handler).
+const bar = document.getElementById('bar');
+new IntersectionObserver(([e]) => bar.classList.toggle('is-stuck', !e.isIntersecting), { rootMargin: '-80px 0px 0px 0px' }).observe(document.querySelector('.hero .copy'));
+
+// Reveal once on scroll.
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
+document.querySelectorAll('.jk-reveal').forEach((n, i) => { n.style.transitionDelay = `${(i % 3) * 70}ms`; io.observe(n); });
+
+// Count the figures up once, with tabular numbers (reduced motion: shown at rest).
+const cio = new IntersectionObserver((es) => es.forEach((e) => {
+  if (!e.isIntersecting) return; cio.unobserve(e.target);
+  const n = e.target, to = Number(n.dataset.count); if (reduce) return;
+  const t0 = performance.now();
+  const tick = (t) => { const k = Math.min(1, (t - t0) / 760); n.textContent = Math.round(to * (1 - (1 - k) ** 3)).toLocaleString(); if (k < 1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}));
+document.querySelectorAll('[data-count]').forEach((n) => cio.observe(n));
+
+// The tagline: words turn to full ink as they cross two thirds of the viewport, once.
+const tag = document.getElementById('tagline');
+if (!reduce) {
+  tag.innerHTML = tag.innerHTML.split('<br>').map((line) => line.trim().split(/\s+/).map((w) => `<span class="w">${w}</span>`).join(' ')).join('<br>');
+  tag.dataset.armed = '';
+  const words = [...tag.querySelectorAll('.w')]; let raf = 0;
+  const paint = () => { raf = 0; const line = innerHeight * 0.68; words.forEach((w) => { if (!w.dataset.lit && w.getBoundingClientRect().top < line) w.dataset.lit = ''; }); };
+  const onScroll = () => { if (!raf) raf = requestAnimationFrame(paint); };
+  new IntersectionObserver(([e]) => e.isIntersecting ? (addEventListener('scroll', onScroll, { passive: true }), onScroll()) : removeEventListener('scroll', onScroll)).observe(tag);
+}
+
+// The problem ledger: rows on the left, the answer re-keyed on the right.
+const ITEMS = [
+  ['Notes live in twelve places', 'One notebook, searchable', 'Every protocol, sample and result sits under its experiment, so the answer is one search away instead of in someone\'s drawer.'],
+  ['Nobody knows the latest protocol', 'Versions with names on them', 'Each change is signed and dated. The current version is the one you see; the history is a click away.'],
+  ['Results cannot be reproduced', 'The exact conditions, kept', 'Reagent lots, temperatures and timings are recorded with the result, not reconstructed from memory.'],
+  ['People leave and take context', 'The lab keeps its memory', 'Notes belong to the project, not the person, and export as plain files whenever you want them.'],
+];
+const list = document.getElementById('ledger'), panel = document.getElementById('panel');
+const show = (i) => {
+  list.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-expanded', String(i === j)));
+  panel.style.animation = 'none'; panel.offsetHeight; panel.style.animation = '';
+  panel.innerHTML = `<h3 style="font-size:var(--fs-title-l)">${ITEMS[i][1]}</h3><p>${ITEMS[i][2]}</p>`;
+};
+ITEMS.forEach(([p, a], i) => { const li = document.createElement('li'); li.innerHTML = `<button type="button" aria-controls="panel"><b>${p}</b><span>${a}</span></button>`; li.firstChild.addEventListener('click', () => show(i)); list.append(li); });
+show(0);
+</script>
+</body>
+</html>

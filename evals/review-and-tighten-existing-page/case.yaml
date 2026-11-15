@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: review-and-tighten-existing-page
+expected_outcome: |
+  A scored review across the rubric lenses with evidence, followed by edits to pricing.html applied in the tightening order, reported as a Before | After | Why table, without inventing new prices or claims.
+context:
+  scaffold_script: place-files.sh
